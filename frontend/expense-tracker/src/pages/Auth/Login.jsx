@@ -35,7 +35,7 @@ const Login = ()=>{
                 <Input 
                 type="text"
                 value={email}
-                onChange={({target})=>setEmail(target.value)} 
+                onChange={handleLogin} 
                 label="Email Address" 
                 placeholder="john@gmail.com"/>
 
