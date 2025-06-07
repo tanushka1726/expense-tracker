@@ -6,7 +6,7 @@ const ProfilePhotoSelector =({image,setImage})=>{
     const [previewUrl,setPreviewUrl] = useState(null)
 
     const handleImageChange = (event)=>{
-        const file = event.terget.files[0];
+        const file = event.target.files[0];
         if(file){
             //Update the image state
             setImage(file);
@@ -47,7 +47,7 @@ const ProfilePhotoSelector =({image,setImage})=>{
                      alt="profile photo"
                      className="w-20 h-20 rounded-full object-cover" />
                      <button type="button"
-                     className="w-8 flex item-center justify-center bg-red-500 text-white rounded-full absolute -bottom-1 -right-1 "
+                     className="w-8 h-8 flex items-center justify-center bg-red-500 text-white rounded-full absolute -bottom-1 -right-1 "
                      onClick={handleRemoveImage}>
                         <LuTrash/>
                      </button>

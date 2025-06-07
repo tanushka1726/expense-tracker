@@ -12,11 +12,22 @@ const SignUp = ()=>{
 
     const [error,setError] = useState(null);
     const navigate = useNavigate();
+     //Handle sinup form 
+     const handleSignUp = async(e)=>{
+            e.preventDefault();
+            if(!validateEmail(email)){
+                setError("Please Enter a valid email adress.");
+                return;
+            }
+            if(!password){
+                setError("Please enter a valid password ");
+                return;
+            }
+            setError("")   
+        }
 
-    //Handle sinup form 
-    const handleSignUp = async(e)=>{
-
-    }
+   
+    
     return(
         <>
         <AuthLayout>
@@ -28,7 +39,7 @@ const SignUp = ()=>{
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <Input 
                     value={fullName}
-                    onchange={({target})=>setFullName(target.value)}
+                    onChange={({target})=>setFullName(target.value)}
                     label="Full name"
                     placeholder="John"
                     type="text"
@@ -49,11 +60,15 @@ const SignUp = ()=>{
                 placeholder="Min 8 Characters "/>
 
                 </div>
-
-                
-
-                    
+   
                 </div>
+                {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+                <button type="submit" className="btn-primary">Sign Up</button>
+                
+                <p className="text-[13px] text-slate-800 mt-3">
+                    Already have an account?{" "}
+                    <Link className="font-medium text-primary underline" to="/login">Login</Link>
+                </p>
              </form>
 
             </div>
