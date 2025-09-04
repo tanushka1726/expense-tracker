@@ -1,7 +1,7 @@
-import {Outfit} from 'next/font/google'
+import { Outfit } from 'next/font/google'
 import "./globals.css";
-const outfit = Outfit({subsets:['latin']});
-import { ClerkProvider } from '@clerk/nextjs';
+const outfit = Outfit({ subsets: ['latin'] });
+import { ClerkProvider, SignedIn, SignedOut, SignIn } from '@clerk/nextjs';
 
 export const metadata = {
   title: "Create Next App",
@@ -10,14 +10,23 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <ClerkProvider>
+
     <html lang="en">
       <body
         className={outfit.className}
       >
-        {children}
+        <ClerkProvider>
+          <SignedOut>
+            <div className="min-h-screen min-w-screen flex justify-center items-center">
+              <SignIn routing="hash" />
+            </div>
+          </SignedOut>
+         <SignedIn>
+            {children}
+          </SignedIn>
+
+        </ClerkProvider>
       </body>
     </html>
-    </ClerkProvider>
   );
 }
